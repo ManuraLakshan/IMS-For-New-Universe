@@ -57,7 +57,7 @@ class AddInventoryController extends CI_Controller
 			if($this->upload->do_upload('materialImage'))
 			{
 				$uploadData = $this->upload->data();
-				$image = base_url().'images/material/'.$uploadData['file_name'];
+				$image = '/images/material/'.$uploadData['file_name'];
 			}else
 			{
 				$image = "";
@@ -94,6 +94,8 @@ class AddInventoryController extends CI_Controller
 				}
 				elseif($result == "inserted")
 				{
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger("hameesha","add inventory");
 					redirect("AddInventoryController/inserted");
 				}
 

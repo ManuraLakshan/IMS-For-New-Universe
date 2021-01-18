@@ -11,6 +11,10 @@ class AddInventoryModel extends CI_Model
 		if($query->num_rows() > 0){
 
 			$this->db->query("UPDATE material SET total_quantity = total_quantity + $stockQuantity WHERE `material_id`=\"$materialId\"");
+			if($materialData["item_image"] !== ""){
+				$imagePath = $materialData["item_image"];
+				$this->db->query("UPDATE material SET item_image = \"$imagePath\" WHERE `material_id`= \"$materialId\"");
+			}
 			$this->db->insert("stock",$stockData);
 			return "updated";
 		}
