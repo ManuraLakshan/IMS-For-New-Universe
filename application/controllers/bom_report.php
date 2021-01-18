@@ -13,7 +13,10 @@ class bom_report extends CI_Controller {
 		
 		$date = date('Y-m-d');
 		$data=$date."<br>";
-		$bom_info=$this->db->query("SELECT bom_id,item_code,material_description,color,size,waste,moq,required_qty FROM bom_details,material WHERE material_id=item_code AND bom_id='$id'");
+		$bom_info=$this->db->query("SELECT material.material_id,material.material_description,material.color,bom.required_qty,bom.unit,bom.waste,bom.moq
+FROM ((style
+INNER JOIN bom ON style.style_id = bom.style_id)
+INNER JOIN material ON material.material_id = bom.material_id AND style.style_id = \"$id\")");
 		$rec = $bom_info->result();
 		$data .=
 
@@ -52,7 +55,6 @@ class bom_report extends CI_Controller {
 			<th>Material
 			Description</th>
 			<th>Color</th>
-			<th>Size</th>
 			<th>Waste%</th>
 			<th>MOQ</th>
 			<th>Required Qty</th>
@@ -61,10 +63,9 @@ class bom_report extends CI_Controller {
 
 		 foreach($rec as $record):
 			$data = $data . "<tr >
-			  <td>" . $record->item_code . "</td>
+			  <td>" . $record->material_id . "</td>
 			  <td>" . $record->material_description . "</td>
 			  <td>" . $record->color . "</td>
-			  <td>" . $record->size . "</td>
 			  <td>" . $record->waste . "%" . "</td>
 			  <td>" . $record->moq . "</td>
 			  <td>" . $record->required_qty . "</td>

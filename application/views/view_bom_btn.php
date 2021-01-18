@@ -4,7 +4,7 @@
 		<div class="col-sm-4">
 			<div class="page-header float-left">
 				<div class="page-title">
-					<h1>ADD BOM</h1>
+					<h1>VIEW BOM</h1>
 				</div>
 			</div>
 		</div>
@@ -12,14 +12,13 @@
 			<div class="page-header float-right">
 				<div class="page-title">
 					<ol class="breadcrumb text-right">
-						<li class="active">Add Bom</li>
+						<li class="active">view Bom</li>
 					</ol>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="content mt-3">
 
 	 <!-- code here --> 
 	<!-- dropdown list -->
@@ -41,36 +40,57 @@
          </select>
           <div class="dropDownSelect2"></div>
     </div> -->
-	 
-	 <div id="accordion"> 
-	
-				<?php 
-                  $i=1;
-                  foreach($result as $rec):?>
-                  <a href="<?php echo base_url('index.php/ViewBomController/viewBom/'.$rec->style_id); ?>">
-                    <div class="col-lg-6 mb-4">
-                      <div class="card bg-gradient-info text-white"  style="background-color: blue;">
-                        <div class="card-body">
-                          <?='Product name : '.$rec->style_name;?>
-                          <div class="text-white-50 small">Bom ID: <?=$rec->style_id;?></div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <?php endforeach;?>
+<!--	 -->
 
 
+<?php foreach ($result as $r): ?>
+	<div class="col-xl-3 col-lg-6 col-md-3">
+		<section class="card">
+			<div class="twt-feed blue-bg">
+				<div class="corner-ribon black-ribon">
+					<i class=""><img class=" mr-3" alt="" style="margin-left: 15px; width:100px; height:18px; " src="<?php echo base_url('images/client_logo.png'); ?>"></i>
+				</div>
+				<div class=" wtt-mark"></div>
+
+				<div class="media">
+					<div class="media-body">
+						<h3 class="text-white display-7" style="margin-top: 20px;" ><strong></strong></h3>
+						<h4><?php echo strtoupper($r->style_id); ?></h4>
+						<h2><?php echo strtoupper($r->style_name); ?></h2>
+					</div>
+				</div>
+			</div>
+			<div class="weather-category twt-category">
+				<ul>
+					<li class="active">
+						<h4><?php echo $r->num_of_pieces;  ?></h4>
+						Quantity
+					</li>
+					<li class="active">
+						<h4></h4>
+						Colour
+					</li>
+					<li class="active">
+						<h4><a href="<?php echo base_url('index.php/ViewBomController/viewBom/'.$r->style_id); ?>">More Info</a></h4>
+					</li>
+
+				</ul>
+			</div>
 
 
-		
-	
-  </div>
+			<footer class="twt-footer">
+				<a href="#"><i class=""></i></a>
+				<a href="#"><i class="fa fa-map-marker"></i></a>
+				NEW UNIVERSE, MATARA
+
+			</footer>
+		</section>
 	</div>
-        
+<?php endforeach; ?>
+
 
 <?php include 'Partials/footer.php' ?>
 
 
 
-<div class="row m-t-30">
-                            
+
