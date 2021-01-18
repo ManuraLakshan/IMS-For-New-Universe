@@ -14,8 +14,12 @@ class ViewBomController extends CI_Controller
 
 	}
 
-		public function viewBom($id){
-		$bom_info=$this->db->query("SELECT bom_id,bom.material_id,material_description,color,waste,moq,required_qty FROM bom,material WHERE bom.material_id=material.material_id AND style_id='$id'");
+		public function viewBom(){
+		$id = $this->input->get("id");
+		$bom_info=$this->db->query("SELECT material.material_id,material.material_description,material.color,bom.required_qty,bom.unit,bom.waste,bom.moq
+FROM ((style
+INNER JOIN bom ON style.style_id = bom.style_id)
+INNER JOIN material ON material.material_id = bom.material_id AND style.style_id = \"$id\")");
 		$this->load->view('view_bom',['id'=>$id,'rec' => $bom_info->result()]);
 	}
 //
@@ -28,5 +32,13 @@ class ViewBomController extends CI_Controller
 //		$data['result'] = $this->ViewBomModel->getStyleDetails();
 //		$this->load->view('view_bom_btn', $data);
 //	}
+
+	function removeMaterial(){
+		$materialId = $this->input->get("id");
+		$styleId = $this->input->get("style");
+		$this->load->model("ViewBomModel");
+		$this->ViewBomModel->remove($materialId,$styleId);
+		redirect("ViewBomController/viewBom");
+	}
 
 }

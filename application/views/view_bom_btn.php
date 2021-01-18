@@ -71,7 +71,7 @@
 						Colour
 					</li>
 					<li class="active">
-						<h4><a href="<?php echo base_url('index.php/ViewBomController/viewBom/'.$r->style_id); ?>">More Info</a></h4>
+						<h4><a href="<?php echo base_url('index.php/ViewBomController/viewBom?id='.$r->style_id); ?>">More Info</a></h4>
 					</li>
 
 				</ul>

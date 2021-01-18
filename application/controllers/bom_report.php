@@ -84,4 +84,7 @@ INNER JOIN material ON material.material_id = bom.material_id AND style.style_id
 		$this->pdf->stream(""."genatate.pdf",array("Atachment"=> 0));
 
 	}
+
+
+
 }

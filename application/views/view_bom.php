@@ -90,7 +90,7 @@
                                          
 										  </tr>
 					<?php if ($rec==NULL){?>
-                      <tr style='background-color:sage; color:black;  text-align:center; '>
+                      <tr style="background-color:sage; color:black;  text-align:center; ">
                         <td><?='-'?></td>
                         <td><?='-'?></td>
                         <td><?='-'?></td>
@@ -110,7 +110,7 @@
                         <td><?=$record->waste.'%';?></td>
                         <td><?=$record->moq;?></td>
                         <td><?=$record->required_qty;?></td>
-                        <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                        <td><a class="btn btn-sm btn-danger" href="<?php echo base_url('index.php/ViewBomController/removeMaterial?id=' . $record->material_id.'&style='.$id); ?>">Remove</a></td>
                       </tr>				  
                       <?php endforeach;}?> 
 			</table>
