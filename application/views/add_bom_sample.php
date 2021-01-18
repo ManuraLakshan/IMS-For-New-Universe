@@ -121,8 +121,9 @@
                         </tbody>
                     </table>
                     <div class="btn-container">
-                            <input type="button" class= "btn btn-info rounded" value="Add Record" id="addBtn">
+
                             <input type="submit" class= "btn btn-dark rounded" value="Submit">
+							<input type="button" class= "btn btn-info rounded" value="Add Record" id="addBtn">
 							<input type="reset" class= "btn btn-warning rounded" value="Reset">
                     </div>
                 </div>

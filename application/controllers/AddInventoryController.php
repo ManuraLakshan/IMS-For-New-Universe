@@ -57,7 +57,7 @@ class AddInventoryController extends CI_Controller
 			if($this->upload->do_upload('materialImage'))
 			{
 				$uploadData = $this->upload->data();
-				$image = '/images/material/'.$uploadData['file_name'];
+				$image = base_url('images/material/').$uploadData['file_name'];
 			}else
 			{
 				$image = "";
