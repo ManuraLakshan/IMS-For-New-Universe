@@ -58,11 +58,7 @@
 	<div class="card">
 		<div class="card-header" id="headingOne">
 		<h5 class="mb-0">
-			<center>
-				<button class="btn btn-link" aria-expanded="true" aria-controls="collapseOne" >
-			Bom Sheet
-			</button>
-			</center>
+
 			<span style='text-align:left;font-size: 15px;'><?='BOM ID: '.$id?></span>
 
 			<span style='text-align:right;font-size: 15px;'>
@@ -72,10 +68,7 @@
 			<a href="<?php echo base_url('index.php/bom_report/Genatate_report/' . $id); ?>" class="btn btn-link " style="color: black; text-decoration: none; float:right"> <h1 class="fa fa-bar-chart ">  Genatate_report  </h1></a>
 			<!-- <a href="Genarate BOM"></a> -->
 			<!-- <a href="#" class="btn btn-info"  style='font-size: 15px;float:right' role="button">Genarate BOM</a> -->
-			
-			
-			
-			
+
 		</h5>
 		</div>
 
@@ -140,4 +133,3 @@
 
 
 <div class="row m-t-30">
-                            
