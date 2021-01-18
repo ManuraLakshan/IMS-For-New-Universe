@@ -134,11 +134,95 @@ class Welcome extends CI_Controller {
 
 	}
 
-	public function Order_Goods(){
 
-		$this->load->view('new_order');
+
+
+	// WATASHA'S welcome controller--------------------------------------------------------------------------------------------------------------------------
+
+	public function form_validation(){
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('material_name', 'material name', 'required');
+
+		if ($this->form_validation->run())
+		{
+			$this->load->model('orderData');
+
+		}
+	}
+
+	public function email()
+	{
+
+
+		$this->form_validation->set_rules('material_name', 'material name', 'required');
+		$this->form_validation->set_rules('gatepass', 'gatepass', 'required');
+		$this->form_validation->set_rules('material_id', 'material id', 'required');
+		$this->form_validation->set_rules('style', 'style', 'required');
+		$this->form_validation->set_rules('sample_name', 'sample name', 'required');
+		$this->form_validation->set_rules('sample_details', 'sample detail', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
+		$this->form_validation->set_rules('rollNo', 'roll no', 'required');
+		$this->form_validation->set_rules('required_qty', 'required qty', 'required');
+		$this->form_validation->set_rules('description', 'desciption', 'required');
+
+		$this->load->model("orderData");
+		$orderData = $this->orderData->insertorderData();
+
+		if($orderData){
+			$this->load->view('email');
+		}
+
 
 	}
+
+	public function email_success()
+	{
+		$this->load->view('email_success');
+
+	}
+
+
+	public function Order_Goods()
+	{
+		$this->load->model("orderData");
+		$result["processData"] = $this->orderData->getorderData();
+		$this->load->view('orderProcess',$result);
+
+	}
+
+	public function backupProcess()
+	{
+		$this->load->model("backupData");
+		$result["Data"] = $this->backupData->getbackupData();
+		$this->load->view('view_backup',$result);
+
+	}
+
+	public function backup()
+	{
+		$this->load->model("backupData");
+		$data["getbackupData"] = $this->backupData->getbackupData();
+		$this->load->view('view_backup',$data);
+	}
+
+	public function pre_orders()
+	{
+		$this->load->view('PreviousOrders');
+	}
+
+	public function print_invoice()
+	{
+		$this->load->view('invoice_view');
+	}
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 }
