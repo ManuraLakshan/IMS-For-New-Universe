@@ -84,19 +84,21 @@ if (!($this->session->userdata('loggedin'))){
 			<div class="col-sm-7">
 				<a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
 				<div class="header-left">
+
+
 					<?php if($_SESSION["Roll"] == "admin"){ ?>
+						<div class="dropdown for-notification">
+							<strong>
+								<button href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="bg-danger count" style="border-radius:10px;"><?php	echo $_SESSION['noti_count'];?></span><strong style="font-size: large">User Requested Notifications - </strong>
+									<span class="fa fa-bell" style="font-size:18px;"></span>
 
-					<div class="dropdown for-notification">
-						<strong>
-							<button href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<span class="bg-danger count" style="border-radius:10px;"><?php	echo $_SESSION['noti_count'];?></span>
-								<span class="fa fa-bell" style="font-size:18px;"></span>
-							</button>
+								</button>
 
-							<ul class="dropdown-menu dropdown-menuw3" ></ul>
-						</strong>
-					</div>
-					<?php }else{ }?>
+								<ul class="dropdown-menu dropdown-menuw3" ></ul>
+							</strong>
+						</div>
+					<?php }else{} ?>
 
 
 				</div>

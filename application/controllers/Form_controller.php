@@ -34,6 +34,8 @@ class form_controller extends CI_Controller
 		}
 	}
 	public function Logging_user(){
+
+
 		$this->form_validation->set_rules('user_name','Username','required');
 		$this->form_validation->set_rules('pwd','Password','required');
 
@@ -63,7 +65,7 @@ class form_controller extends CI_Controller
 					$this->load->model("GlobalMethods");
 					$this->GlobalMethods->logger($this->session->userdata('user_name'),"Logged In");
 					redirect('UserAccounts/UserAdmin');
-				}else{
+				}else if($responce->role == 'STAFF'){
 					$_SESSION["Roll"]="staff";
 					$this->session->set_userdata($user_data);
 					$this->session->set_flashdata('Welcome','You are warmly welcome');

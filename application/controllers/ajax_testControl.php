@@ -24,10 +24,10 @@ class ajax_testControl extends CI_Controller
 					$i = 0;
 					while ($count > $i) {
 						$output .= "
-							<div style='margin-top: -10px;'>
+							<div style='margin-top: -0px;'>
 							<p class=\"red bg-light\">You have ". $_SESSION['noti_count']." Mails</p>
 							
-							<a class=\"dropdown-item media bg-white\" href=\"".base_url('index.php/Welcome/userRequestRespond/'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" >
+							<p class=\"dropdown-item media bg-white\" href=\"\" >
 								
 								
 								<span class=\"message media-body\">
@@ -35,8 +35,12 @@ class ajax_testControl extends CI_Controller
                                 <span class=\"name float-left\" style='margin-top: 5px;'>Name :\t<strong>" . $_SESSION["modele_notitfication"][$i]->user_name . "</strong></span>
                                 <span class=\"time float-right\" style='color: red;margin-top: -5px;'>Just now</span>
                                     <p>Position :\t" . $_SESSION["modele_notitfication"][$i]->role . "</p>
+                                    <div>
+                                    <a href=\"".base_url('index.php/Welcome/userRequestRespondSuccess/'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" style='border-radius: 20px;' class=\" btn btn-dark \">submit</a>
+                                    <a href=\"".base_url('index.php/Welcome/userRequestRespondReject'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" style='border-radius: 20px;'  class=\" btn btn-warning \">Reject</a>
+                                    </div>
                             </span>
-							</a>
+							</p>
 							
 							
 							</div>
