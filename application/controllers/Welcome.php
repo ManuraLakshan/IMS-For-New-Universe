@@ -23,6 +23,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('page_login');
 	}
 
+	public function logoButton(){
+		$this->load->view('welcomeView');
+	}
+
 	public function dashboard(){
 		$this->load->view('index');
 	}

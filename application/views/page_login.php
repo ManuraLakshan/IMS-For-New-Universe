@@ -68,8 +68,8 @@
 					<?php	echo validation_errors();	?>
 					<?php	echo form_open('form_controller/Logging_user');	?>
                         <div class="form-group">
-                            <label>User ID</label>
-                            <input type="text" class="form-control" placeholder="User ID" name="user_name">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" placeholder="User Name" name="user_name">
                         </div>
                         <div class="form-group">
                             <label>Password</label>

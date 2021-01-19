@@ -1,0 +1,115 @@
+$(function () {
+
+    //animate on scroll
+    new WOW().init();
+
+
+
+    $("a.smooth-scroll").click(function (event) {
+
+        event.preventDefault();
+
+        // get/return id like #about,#work, #item and etc
+        var section = $(this).attr("href");
+
+        $('html, body').animate({
+
+            scrollTop: $(section).offset().top - 64
+        }, 1250, "easeInOutExpo");
+    });
+
+
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() < 50) {
+
+            $("#back-to-top").fadeOut();
+
+        } else {
+            // show nav
+
+            $("#back-to-top").fadeIn();
+        }
+
+    });
+
+
+
+    $("#our-pride-galery").magnificPopup({
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image',
+        gallery: {
+            enabled: true
+        }
+
+    });
+
+
+    $("#team-members").owlCarousel({
+        items: 3,
+        autoplay: true,
+        smartSpeed: 700,
+        loop: true,
+        autoplayHoverPause: true,
+        responsive: {
+            // breakpoint from 0 up
+            0: {
+                items: 1
+
+            },
+            // breakpoint from 480 up
+            480: {
+                items: 2
+            },
+            // breakpoint from 768 up
+            768: {
+                items: 3
+            }
+        }
+    });
+
+    $(".expand").on( "click", function() {
+        // $(this).next().slideToggle(200);
+        $expand = $(this).find(">:first-child");
+
+        if($expand.text() == "+") {
+            $expand.text("-");
+        } else {
+            $expand.text("+");
+        }
+    });
+
+
+
+});
+
+
+// smooth scorlling
+
+
+
+
+
+$(document).ready(function () {
+    var splitData = window.location.href.split('?a=');
+
+    if (splitData[1]) {
+
+        var classname = splitData[1] + "-tab";
+        $("#" + classname).addClass("active");
+        $("#" + classname+'s').addClass("active");
+        $("uuu").click();
+                i.preventDefault(), e.call(t(this), "show");
+        
+    } else {
+                $("#1-tab").addClass("active");
+    }
+});
+
+
+
+
+
+
+
+
