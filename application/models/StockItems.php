@@ -63,7 +63,7 @@ class StockItems extends CI_Model
 
 		}else if($SuperUser == $username && $SuperUserPwd == $password){
 
-			echo base_url('')
+			echo base_url('LogBookController/loadLogBookView');
 
 		}else{
 			return false;
