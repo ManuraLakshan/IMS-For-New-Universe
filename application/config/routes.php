@@ -52,3 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//image crud users
+$route['users']['GET'] = 'userController/view';
+$route['users/add']['GET'] = 'userController/create';
+$route['users/add']['POST'] = 'userController/store';
+$route['users/edit/(:any)']['GET'] = 'userController/edit/$1';
+$route['users/update/(:any)']['POST'] = 'userController/update/$1';
+$route['users/delete/(:any)']['GET'] = 'userController/delete/$1';
+
+//department
+$route['dep']['GET'] = 'departmentControler/view';
+$route['dep/add']['GET'] = 'departmentControler/create';
+$route['dep/add']['POST'] = 'departmentControler/store';
+$route['dep/edit/(:any)']['GET'] = 'departmentControler/edit/$1';
+$route['dep/update/(:any)']['POST'] = 'departmentControler/update/$1';
+$route['dep/delete/(:any)']['GET'] = 'departmentControler/delete/$1';

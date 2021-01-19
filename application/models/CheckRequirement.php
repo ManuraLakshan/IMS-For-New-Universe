@@ -55,7 +55,7 @@ class CheckRequirement extends CI_Model{
 		return $query7;
 	}
 
-	public function reduas_quantity($quantity,$id,$bom_id){
+	public function reduas_quantity($id,$quantity,$bom_id){
 
 		$sql5="Update material set total_quantity=total_quantity-$quantity WHERE material_id='$id'";
 
@@ -67,18 +67,19 @@ class CheckRequirement extends CI_Model{
 		return $query6.$query7;
 	}
 
-	public function request_quantity($quantity,$id,$bom_id,$total_quantity,$style_id){
+	public function request_quantity($material_id,$required_qty,$total_quantity,$bom_id,$style_id){
 
-		$request_qty = $quantity-$total_quantity;
-		$available_qty = $quantity-$request_qty;
-		 $sql5="INSERT INTO `request`(`bom_id`, `material_id`, `quentity`) VALUES ('$bom_id', '$id', '$quantity')";
-		$sql = "INSERT INTO `bom`(`bom_id`, `material_id`, `required_qty`, `style_id`, `is_issued`) VALUES ('$bom_id', '$id', $available_qty, '$style_id', 0)";
-		$sql6="Update bom set `required_qty` = '$request_qty', is_issued='3' WHERE bom_id='$bom_id'";
+		$request_qty = $required_qty-$total_quantity;
+		$available_qty = $total_quantity-$request_qty;
+		$sql5="INSERT INTO `request`(`material_id`, `quentity`,`bom_id`) VALUES ('$material_id','$request_qty','$bom_id')";
+		// $sql = "INSERT INTO `bom`(`bom_id`, `material_id`, `required_qty`, `style_id`, `is_issued`) VALUES ('$bom_id', '$material_id', $available_qty, '$style_id', 0)";
+		$sql6="Update bom set `required_qty` = '$required_qty', is_issued='3' WHERE bom_id='$bom_id'";
 		$query7=$this->db->query($sql5);
-		$query=$this->db->query($sql);
+		// $query=$this->db->query($sql);
 		$query8=$this->db->query($sql6);
 		
-		return $query.$query7.$query8;
+		// return $query.$query7.$query8;
+		return $query7.$query8;
 		//return $quantity;
 	}
 

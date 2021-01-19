@@ -53,7 +53,7 @@
 					<?php if($value->required_qty > $value->total_quantity){ ?>
 						<a href="<?php echo base_url('index.php/Welcome/request_quantity/'.$value->material_id.'/'.$value->required_qty.'/'.$value->total_quantity.'/'.$value->bom_id.'/'.$value->style_id);?>"><input class="btn btn-warning" type="button" value="Request" id="btn1" class="btn" <?php if($value->is_issued == 3) echo 'disabled';?>></a>
 					<?php } else { ?>
-						<a href="<?php echo base_url('index.php/Welcome/ready_take/'.$value->material_id.'/'.$value->required_qty.'/'.$value->bom_id);?>"><input class="btn btn-primary" type="button" value="Take" id="btn1" class="btn"></a>
+						<a href="<?php echo base_url('index.php/Welcome/ready_take/'.$value->material_id.'/'.$value->required_qty.'/'.$value->bom_id);?>"><input class="btn btn-primary" type="button" value="Take" id="btn1" class="btn" ></a>
 					<?php } ?>
 				</td>
 				<!-- <td><input type="button" value="check quantity" onclick="btn(<php echo $value->quantity;?>,<php echo $value->total_quantity;?>)" id="btn1" class="btn" ></td> -->
@@ -66,7 +66,7 @@
 
 <div class="container">
 
-	<h6 class="text-center my-3">Request Table </h6>
+	<h6 class="text-center my-3">Conforming Table </h6>
 	<table id="bootstrap-data-table-export" class="table  table-bordered">
 		<thead>
 		<tr>
@@ -79,6 +79,7 @@
 		</thead>
 		<tbody>
 		<?php
+
 		$load_data['load_data'] ?>
 
 		<?php foreach($load_quantity as $value) :?>

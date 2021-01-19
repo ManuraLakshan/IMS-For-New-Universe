@@ -26,7 +26,8 @@ class ajax_testControl extends CI_Controller
 						$output .= "
 							<div style='margin-top: -10px;'>
 							<p class=\"red bg-light\">You have ". $_SESSION['noti_count']." Mails</p>
-							<button class=\"dropdown-item media bg-white\" href=\"#\">
+							
+							<a class=\"dropdown-item media bg-white\" href=\"".base_url('Welcome/userRequestRespond')."\" >
 								
 								
 								<span class=\"message media-body\">
@@ -35,7 +36,9 @@ class ajax_testControl extends CI_Controller
                                 <span class=\"time float-right\" style='color: red;margin-top: -5px;'>Just now</span>
                                     <p>Position :\t" . $_SESSION["modele_notitfication"][$i]->role . "</p>
                             </span>
-							</button>
+							</a>
+							
+							
 							</div>
 						";
 
@@ -62,4 +65,5 @@ class ajax_testControl extends CI_Controller
 			}
 		}
 	}
+
 }

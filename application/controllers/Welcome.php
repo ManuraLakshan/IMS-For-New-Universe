@@ -70,6 +70,7 @@ class Welcome extends CI_Controller {
 	public function add_bom(){
 		$this->load->view('add_bom');
 	}
+
 	public function check_requirement(){
 		$this->load->model('CheckRequirement');
 		$get_bom=$this->CheckRequirement-> get_Bom();
@@ -79,7 +80,7 @@ class Welcome extends CI_Controller {
 		$get_quantity=$this->CheckRequirement->get_quantity();
 		$load_quantity=$this->CheckRequirement->load_quantity();
 		$get_requset=$this->CheckRequirement->get_requset();
-		
+
 		// $data['details'] = request_quantity($quantity,$id,$bom_id,$total_quantity,$style_id);
 		// $this->load->view('check_requirement',$data);
 		$this->load->view('check_requirement',['get_requset'=>$get_requset,'load_quantity'=>$load_quantity,'get_quantity'=>$get_quantity,'get_style'=>$get_Style,'get_stock'=>$get_stock,'get_Bom'=>$get_bom,'get_Bom_M_ID'=>$get_bom_M_ID]);
@@ -91,7 +92,7 @@ class Welcome extends CI_Controller {
 		$quantity=$this->uri->segment(4);
 		$bom_id=$this->uri->segment(5);
 		$this->load->model('CheckRequirement');
-		$this->CheckRequirement->reduas_quantity($quantity,$id,$bom_id);
+		$this->CheckRequirement->reduas_quantity($id,$quantity,$bom_id);
 		redirect('Welcome/check_requirement');
 	}
 
@@ -102,7 +103,7 @@ class Welcome extends CI_Controller {
 		$bom_id=$this->uri->segment(6);
 		$style_id=$this->uri->segment(7);
 		$this->load->model('CheckRequirement');
-		$this->CheckRequirement->request_quantity($quantity,$total_quantity,$id,$bom_id,$style_id);
+		$this->CheckRequirement->request_quantity($id,$quantity,$total_quantity,$bom_id,$style_id);
 		redirect('Welcome/check_requirement');
 	}
 
@@ -138,6 +139,9 @@ class Welcome extends CI_Controller {
 
 	}
 
+	function userRequestRespond(){
+		echo "<script>alert()</script>";
+	}
 
 
 

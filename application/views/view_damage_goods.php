@@ -31,7 +31,7 @@
 					$i=0;
 
 				?>
-					<div class="col-md-12">
+					<div class="container">
 						<div class="card">
 							<div class="card-header">
 								<strong class="card-title">Damaged Goods List</strong>

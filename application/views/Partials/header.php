@@ -30,6 +30,7 @@
 
 ?>
 
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -59,8 +60,9 @@
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
 
+	<script type="text/javascript" src="<?php echo base_url('vendors/bootstrap/js/dist/'); ?>"></script>
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
 </head>
@@ -82,14 +84,9 @@
             <div class="col-sm-7">
                 <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                 <div class="header-left">
-                    <button class="search-trigger"><i class="fa fa-search"></i></button>
-                    <div class="form-inline">
-                        <form class="search-form">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                        </form>
-                    </div>
 
+
+					<?php if($_SESSION["Roll"] == "admin"){ ?>
                     <div class="dropdown for-notification">
 						<strong>
 							<button href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -100,50 +97,9 @@
 							<ul class="dropdown-menu dropdown-menuw3" ></ul>
 						</strong>
                     </div>
+					<?php }else{} ?>
 
-                    <div class="dropdown for-message">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="message"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ti-email"></i>
-                            <span class="count bg-primary">9</span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="message">
-                            <p class="red">You have 4 Mails</p>
-                            <a class="dropdown-item media bg-flat-color-1" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="<?php echo base_url('images/avatar/1.jpg'); ?>"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Jonathan Smith</span>
-                                <span class="time float-right">Just now</span>
-                                    <p>Hello, this is an example msg</p>
-                            </span>
-                        </a>
-                            <a class="dropdown-item media bg-flat-color-4" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="<?php echo base_url('images/avatar/2.jpg'); ?>"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Jack Sanders</span>
-                                <span class="time float-right">5 minutes ago</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </span>
-                        </a>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="<?php echo base_url('images/avatar/3.jpg'); ?>"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Cheryl Wheeler</span>
-                                <span class="time float-right">10 minutes ago</span>
-                                    <p>Hello, this is an example msg</p>
-                            </span>
-                        </a>
-                            <a class="dropdown-item media bg-flat-color-3" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="<?php echo base_url('images/avatar/4.jpg'); ?>"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Rachel Santos</span>
-                                <span class="time float-right">15 minutes ago</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </span>
-                        </a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -153,7 +109,7 @@
 
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<strong style="  font-size: x-large " class="" ><?php echo	$this->session->userdata('user_name');	 ?>&ensp;
-							<img class="user-avatar rounded-circle" height="30" src=" " alt=""></strong>
+							<img class="user-avatar rounded-circle" height="30" src="<?php echo base_url('images/avatar/'); ?>" alt=""></strong>
 					</a>
 
 					<div class="user-menu dropdown-menu">

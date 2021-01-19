@@ -37,9 +37,8 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Departments</a>
 						<ul class="sub-menu children dropdown-menu">
 
-							<li><i class="menu-icon fa fa-window-restore"></i><a href="">List Departments</a></li>
-							<li><i class="menu-icon fa fa-calendar-plus-o"></i><a href="">Add Departments</a></li>
-							<li><i class="menu-icon fa fa-calendar-times-o"></i><a href="">Delete Departments</a></li>
+							<li><i class="menu-icon fa fa-calendar-plus-o"></i><a href="<?= site_url('dep/add')?>">Add Departments</a></li>
+							<li><i class="menu-icon fa fa-window-restore"></i><a href="<?= site_url('dep')?>">Manage Departments</a></li>
 						</ul>
 					</li>
 
@@ -47,9 +46,8 @@
 					<li class="menu-item-has-children dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Users</a>
 						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-user-plus"></i><a href="<?=site_url('user/add')?>">Add User</a></li>
-							<li><i class="menu-icon fa fa-users"></i><a href="<?php echo site_url('user'); ?>">Manage Users</a></li>
-							<li class="dropdown"><i class="menu-icon fa fa-bell-o abc" ></i><a href="">User Requests</a></li>
+							<li><i class="menu-icon fa fa-user-plus"></i><a href="<?= site_url('users/add')?>">Add User</a></li>
+							<li><i class="menu-icon fa fa-users"></i><a href="<?php echo site_url('users'); ?>">Manage Users</a></li>
 
 						</ul>
 						<p style="color: white;" id="user_request"></p>

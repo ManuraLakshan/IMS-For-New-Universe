@@ -47,7 +47,7 @@ if ($this->session->flashdata('msg')){?>
 
 <! Naming which are the listed items in item panel -->
 
-<div class="col-lg-12">
+<div class="container">
 	<div class="card">
 		<?php	echo validation_errors();	?>
 		<?php	echo form_open('form_controller/add_damage_goods');	?>
