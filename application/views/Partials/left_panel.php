@@ -93,6 +93,7 @@
 							<li><i class="menu-icon fa fa-cubes"></i><a href="<?php echo base_url('index.php/Welcome/Order_Goods'); ?>">Order Goods</a></li>
 
 
+
 						</ul>
 					</li>
 					<!--h3 class="menu-title">Department</h3>

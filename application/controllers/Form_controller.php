@@ -60,11 +60,15 @@ class form_controller extends CI_Controller
 					$this->session->set_userdata($user_data);
 					$_SESSION['Login_user']=$user_data;
 					$this->session->set_flashdata('Welcome','You are warmly welcome');
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"Logged In");
 					redirect('UserAccounts/UserAdmin');
 				}else{
 					$_SESSION["Roll"]="staff";
 					$this->session->set_userdata($user_data);
 					$this->session->set_flashdata('Welcome','You are warmly welcome');
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"Logged In");
 					redirect('UserAccounts/UserStaff');
 				}
 					//$this->session->set_userdata($user_data);
@@ -81,6 +85,9 @@ class form_controller extends CI_Controller
 	}
 
 	public function Logout_user(){
+
+		$this->load->model("GlobalMethods");
+		$this->GlobalMethods->logger($this->session->userdata('user_name'),"Log outed");
 
 		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('user_name');

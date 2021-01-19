@@ -74,6 +74,8 @@ class AddBomController extends CI_Controller
 
 			if($result == "updated")
 			{
+				$this->load->model("GlobalMethods");
+				$this->GlobalMethods->logger($this->session->userdata('user_name'),"updated BOM");
 				redirect("AddBomController/updated");
 			}
 			elseif ($result == "excites")
@@ -82,6 +84,8 @@ class AddBomController extends CI_Controller
 			}
 			elseif($result == "inserted")
 			{
+				$this->load->model("GlobalMethods");
+				$this->GlobalMethods->logger($this->session->userdata('user_name'),"Inserted BOM");
 				redirect("AddBomController/inserted");
 			}else{
 				return $result;

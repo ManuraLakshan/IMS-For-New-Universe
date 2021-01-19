@@ -1,4 +1,4 @@
-<?php include 'Partials/header.php' ?>
+ <?php include 'Partials/header.php' ?>
 
 	<div class="breadcrumbs">
 		<div class="col-sm-4">

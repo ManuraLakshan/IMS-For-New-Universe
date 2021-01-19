@@ -54,7 +54,8 @@
 					<div class="row form-group">
 						<div class="col col-md-2"><label for="arrivalDate" class=" form-control-label">Date</label></div>
 						<div class="col-12 col-md-3">
-							<input type="date" id="arrivalDate" name="arrivalDate" class="form-control" >
+							<input type="date" id="arrivalDate" name="arrivalDate" class="form-control" value="<?php date_default_timezone_set('Asia/Kolkata');
+							echo date("Y-m-d");?>" min="<?php echo date("Y-m-d");?>" max="<?php echo date("Y-m-d");?>">
 							<span class="text-danger"><?php echo form_error('arrivalDate'); ?></span>
 						</div>
 					</div>

@@ -8,6 +8,22 @@ class GlobalMethods extends CI_Model
 	{
 		$todate = date('Y-m-d');
 		$file = fopen('./assets/logbook/log_' . $todate . '.txt',"a");
-		fwrite($file, "\n".$user . " " . $data);
+		date_default_timezone_set('Asia/Kolkata');
+		fwrite($file, "\n".date("h:i:sa")." ".$user . " " . $data);
 	}
+
+	public function readLogFile($file){
+		$handle = fopen("./assets/logbook/".$file, "r");
+		$info = array();
+		if ($handle) {
+			while (($line = fgets($handle)) !== false) {
+				array_push($info,$line);
+			}
+			fclose($handle);
+			return $info;
+		}
+	}
+
+
+
 }

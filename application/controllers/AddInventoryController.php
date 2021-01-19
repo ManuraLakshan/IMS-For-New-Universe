@@ -86,6 +86,8 @@ class AddInventoryController extends CI_Controller
 			$result = $this->AddInventoryModel->insertData($materialData,$stockData,$this->input->post("materialId"),$this->input->post("materialColor"),$this->input->post("materialQuantity"),$this->input->post("materialType"),$this->input->post("materialUnit"));
 				if($result == "updated")
 				{
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"updated inventory");
 					redirect("AddInventoryController/updated");
 				}
 				elseif ($result == "excites")
@@ -95,7 +97,7 @@ class AddInventoryController extends CI_Controller
 				elseif($result == "inserted")
 				{
 					$this->load->model("GlobalMethods");
-					$this->GlobalMethods->logger("hameesha","add inventory");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"add inventory");
 					redirect("AddInventoryController/inserted");
 				}
 
