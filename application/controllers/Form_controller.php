@@ -58,6 +58,7 @@ class form_controller extends CI_Controller
 				if($responce->role == 'ADMIN'){
 					$_SESSION["Roll"]="admin";
 					$this->session->set_userdata($user_data);
+					$_SESSION['Login_user']=$user_data;
 					$this->session->set_flashdata('Welcome','You are warmly welcome');
 					redirect('UserAccounts/UserAdmin');
 				}else{

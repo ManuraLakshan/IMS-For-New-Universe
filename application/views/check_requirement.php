@@ -66,7 +66,7 @@
 
 <div class="container">
 
-	<h6 class="text-center my-3">Conforming Table </h6>
+	<h6 class="text-center my-3">Confirming Table </h6>
 	<table id="bootstrap-data-table-export" class="table  table-bordered">
 		<thead>
 		<tr>

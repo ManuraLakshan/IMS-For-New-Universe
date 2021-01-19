@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['userRequestRespond/:num'] = 'catalog/product_lookup';
 
 //image crud users
 $route['users']['GET'] = 'userController/view';

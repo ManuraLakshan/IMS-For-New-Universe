@@ -135,13 +135,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('Admin/request');
 
-
-
+	}
+	 function userRequestRespond($userId){
+		
 	}
 
-	function userRequestRespond(){
-		echo "<script>alert()</script>";
-	}
 
 
 

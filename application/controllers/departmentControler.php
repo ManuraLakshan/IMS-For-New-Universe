@@ -36,7 +36,7 @@ class departmentControler extends CI_Controller{
 		$this->form_validation->set_rules('dep_id','Department Id','required|is_unique[department.dep_id]');
         $this->form_validation->set_rules('dep_name','Department Name','required|is_unique[department.dep_name]');
         $this->form_validation->set_rules('dep_email','Email','required|is_unique[department.dep_email]');
-        $this->form_validation->set_rules('dep_contact','Contact','required');
+        $this->form_validation->set_rules('dep_contact','Contact','required|numeric');
 
         $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -79,7 +79,7 @@ class departmentControler extends CI_Controller{
 		$this->form_validation->set_rules('dep_id','Department Id','required|callback_id_check');
         $this->form_validation->set_rules('dep_name','Department Name','required');
         $this->form_validation->set_rules('dep_email','Email','required|callback_email_check');
-        $this->form_validation->set_rules('dep_contact','Contact','required');
+        $this->form_validation->set_rules('dep_contact','Contact','required|numeric');
       
         $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 

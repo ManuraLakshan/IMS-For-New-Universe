@@ -60,7 +60,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
 
-	<script type="text/javascript" src="<?php echo base_url('vendors/bootstrap/js/dist/'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('vendors/bootstrap/js/dist/sweetalert.min.js'); ?>"></script>
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -90,8 +90,9 @@
                     <div class="dropdown for-notification">
 						<strong>
 							<button href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<span class="bg-danger count" style="border-radius:10px;"><?php	echo $_SESSION['noti_count'];?></span>
+								<span class="bg-danger count" style="border-radius:10px;"><?php	echo $_SESSION['noti_count'];?></span><span style="font-size: large">User Requested Notifications - </span>
 								<span class="fa fa-bell" style="font-size:18px;"></span>
+
 							</button>
 
 							<ul class="dropdown-menu dropdown-menuw3" ></ul>
@@ -108,16 +109,15 @@
 				<div class="user-area dropdown float-right">
 
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<strong style="  font-size: x-large " class="" ><?php echo	$this->session->userdata('user_name');	 ?>&ensp;
-							<img class="user-avatar rounded-circle" height="30" src="<?php echo base_url('images/avatar/'); ?>" alt=""></strong>
+						<strong style="  font-size: x-large " class="" ><?php echo	$this->session->userdata('user_name');	 ?><?php echo "<small>(<i>".$this->session->userdata('role')."</i>)</small>"; ?>&ensp;
+
+							<img class="user-avatar rounded-circle" height="30" src="<?php echo base_url('images/avatar/'.$this->session->userdata('avataar')); ?>" alt=""></strong>
 					</a>
 
 					<div class="user-menu dropdown-menu">
-						<a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-						<a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
 
-						<a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+
 
 						<a class="nav-link" href="<?php echo base_url('index.php/Form_controller/Logout_user'); ?>"><i class="fa fa-power-off"></i> Logout</a>
 					</div>

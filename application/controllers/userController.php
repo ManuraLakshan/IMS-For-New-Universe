@@ -38,7 +38,7 @@ class userController extends CI_Controller{
         $this->form_validation->set_rules('email','Email','required|is_unique[user.user_email]');
         $this->form_validation->set_rules('role','User Role','required');
         $this->form_validation->set_rules('dob','Date Of Birth','required');
-        $this->form_validation->set_rules('mobile','Mobile','required');
+        $this->form_validation->set_rules('mobile','Mobile','required|numeric');
         $this->form_validation->set_rules('address','Address','required');
         $this->form_validation->set_rules('password','Password','required|min_length[5]');
         $this->form_validation->set_rules('passconf','Password Conform','required|matches[password]');
@@ -115,7 +115,7 @@ class userController extends CI_Controller{
         $this->form_validation->set_rules('email','Email','required|callback_email_check');
         $this->form_validation->set_rules('role','User Role','required');
         $this->form_validation->set_rules('dob','Date Of Birth','required');
-        $this->form_validation->set_rules('mobile','Mobile','required');
+        $this->form_validation->set_rules('mobile','Mobile','required|numeric');
         $this->form_validation->set_rules('address','Address','required');
         //$this->form_validation->set_rules('password','Password','required|min_length[5]');
         //$this->form_validation->set_rules('passconf','Password Conform','required|matches[password]');

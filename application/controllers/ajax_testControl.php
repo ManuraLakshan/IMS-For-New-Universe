@@ -27,7 +27,7 @@ class ajax_testControl extends CI_Controller
 							<div style='margin-top: -10px;'>
 							<p class=\"red bg-light\">You have ". $_SESSION['noti_count']." Mails</p>
 							
-							<a class=\"dropdown-item media bg-white\" href=\"".base_url('Welcome/userRequestRespond')."\" >
+							<a class=\"dropdown-item media bg-white\" href=\"".base_url('index.php/Welcome/userRequestRespond/'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" >
 								
 								
 								<span class=\"message media-body\">
@@ -65,5 +65,6 @@ class ajax_testControl extends CI_Controller
 			}
 		}
 	}
+
 
 }

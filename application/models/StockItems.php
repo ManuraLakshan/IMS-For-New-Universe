@@ -50,7 +50,7 @@ class StockItems extends CI_Model
 
 
 		$username = $this->input->post('user_name');
-		$password = md5($this->input->post('pwd'));
+		$password = sha1($this->input->post('pwd'));
 
 		$this->db->where('user_name',$username);
 		$this->db->where('password',$password);

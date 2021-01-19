@@ -107,16 +107,12 @@ if (!($this->session->userdata('loggedin'))){
 				<div class="user-area dropdown float-right">
 
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<strong style="  font-size: x-large " class="" ><?php echo	$this->session->userdata('user_name');	 ?>&ensp;
-							<img class="user-avatar rounded-circle" height="30" src=" " alt=""></strong>
+						<strong style="  font-size: x-large " class="" ><?php echo	$this->session->userdata('user_name');	 ?><?php echo "<small>(<i>".$this->session->userdata('role')."</i>)</small>"; ?>&ensp;
+							<img class="user-avatar rounded-circle" height="30" src="<?php echo base_url('images/avatar/'.$this->session->userdata('avataar')); ?>" alt=""></strong>
 					</a>
 
 					<div class="user-menu dropdown-menu">
-						<a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-						<a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-						<a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
 						<a class="nav-link" href="<?php echo base_url('index.php/Form_controller/Logout_user'); ?>"><i class="fa fa-power-off"></i> Logout</a>
 					</div>
