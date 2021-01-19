@@ -25,7 +25,7 @@ class AddBomModel extends CI_Model
 //		return $query2->result_array();
 	}
 
-	public function insertStyleData($styleDataArray,$style,$styleName,$numberOfPieces,$bomDataArray)
+	public function insertStyleData($styleDataArray,$style,$styleName,$dueDate,$numberOfPieces,$bomDataArray)
 	{
 
 		$query = $this->db->query("SELECT * FROM `style` WHERE `style_id`=\"$style\" AND `style_name`=\"$styleName\" ");

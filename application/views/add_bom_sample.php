@@ -64,6 +64,10 @@
                     <input type="number" class ="form-control my-2" name="pieces" id="pieces"  placeholder= "Number of Pieces" min=0>
                     <span class="text-danger"><?php echo form_error('pieces'); ?></span>
                     </div>
+					<div class="col-12 col-md-2">
+						<input type="date" class ="form-control my-2" name="dueDate" id="dueDate"  placeholder= "Due Date" min=0>
+						<span class="text-danger"><?php echo form_error('dueDate'); ?></span>
+					</div>
                 </div>
 
                 <div class="table-responsive">
@@ -250,7 +254,7 @@ function handleAutocomplete(){
 						let items = [];
 						$('#styleName').val(data[1][0].style_name);
 						$('#pieces').val(data[1][0].num_of_pieces);
-
+						$('#dueDate').val(data[1][0].due_date);
 
 
 						for (let i = 0; i < data[0].length; i++)

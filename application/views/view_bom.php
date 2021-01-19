@@ -4,19 +4,19 @@
 		<div class="col-sm-4">
 			<div class="page-header float-left">
 				<div class="page-title">
-					<h1>VIEM BOM</h1>
+					<h1>MORE INFO</h1>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-8">
-			<div class="page-header float-right">
-				<div class="page-title">
-					<ol class="breadcrumb text-right">
-						<li class="active">View Bom</li>
-					</ol>
-				</div>
-			</div>
-		</div>
+<!--		<div class="col-sm-8">-->
+<!--			<div class="page-header float-right">-->
+<!--				<div class="page-title">-->
+<!--					<ol class="breadcrumb text-right">-->
+<!--						<li class="active">View Bom</li>-->
+<!--					</ol>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
 	</div>
 
 	<div class="content mt-3">
@@ -41,20 +41,9 @@
          </select>
           <div class="dropDownSelect2"></div>
     </div> -->
-	 
-	 <div id="accordion"> 
-	
 
-	<div class="card">
-		<div class="card-header" id="headingOne">
-		<!-- <h5 class="mb-0">
-			<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			Style One
-			</button>
-		</h5> -->
-		</div>
+<div id="accordion">
 
-		
 	<div class="card">
 		<div class="card-header" id="headingOne">
 		<h5 class="mb-0">
@@ -121,11 +110,8 @@
 		</div>
 		<!-- </div> -->
 	</div>
+</div>
 
-		
-	
-  </div>
-	</div>
         
 
 <?php include 'Partials/footer.php' ?>

@@ -28,6 +28,7 @@ class AddBomController extends CI_Controller
 		$this->form_validation->set_rules('style', 'Style ID', 'required');
 		$this->form_validation->set_rules('styleName', 'Style Name', 'required');
 		$this->form_validation->set_rules('pieces', 'Number of Pieces', 'required');
+		$this->form_validation->set_rules('dueDate', 'Due Date', 'required');
 		$this->form_validation->set_rules('itemCode[]','Item Code', 'required');
 		$this->form_validation->set_rules('unit[]','Unit', 'required');
 		$this->form_validation->set_rules('waste[]','Waste', 'required');
@@ -40,7 +41,7 @@ class AddBomController extends CI_Controller
 			$style = $this->input->post('style');
 			$styleName = $this->input->post('styleName');
 			$numberOfPieces = $this->input->post('pieces');
-
+			$dueDate = $this->input->post('dueDate');
 			$itemCode = $this->input->post('itemCode[]');
 			$unit = $this->input->post('unit[]');
 			$waste = $this->input->post('waste[]');
@@ -51,7 +52,8 @@ class AddBomController extends CI_Controller
 			$styleDataArray = Array(
 				"style_id" => $style,
 				"style_name" => $styleName,
-				"num_of_pieces" => $numberOfPieces
+				"num_of_pieces" => $numberOfPieces,
+				"due_date" => $dueDate
 			);
 
 			$bomDataArray = Array();
@@ -68,7 +70,7 @@ class AddBomController extends CI_Controller
 
 
 			$this->load->model('AddBomModel');
-			$result =  $this->AddBomModel->insertStyleData($styleDataArray,$style,$styleName,$numberOfPieces,$bomDataArray);
+			$result =  $this->AddBomModel->insertStyleData($styleDataArray,$style,$styleName,$dueDate,$numberOfPieces,$bomDataArray);
 
 			if($result == "updated")
 			{

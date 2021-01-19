@@ -38,17 +38,27 @@ if (!empty($fetch_fabric_data)) {
 
 
 							while($count2>$j){
+								$FabId = $_SESSION["stock"][$j]->material_id;
 								$FabQuantity = $_SESSION["stock"][$j]->total_quantity;
 								$FabName = $_SESSION["stock"][$j]->material_description;
 								$FabColour = $_SESSION["stock"][$j]->color;
 								$Fabimg = $_SESSION["stock"][$j]->item_image;
-
-
+								$FabUnit = $_SESSION["stock"][$j]->material_unit;
+								$FabType = $_SESSION["stock"][$j]->material_name;
 								?>
 
 								<div class="col-xl-3 col-lg-6">
 									<section class="card">
-										<div class="twt-feed blue-bg">
+										<div class="twt-feed <?php if(strtoupper($FabType) == "FABRIC") {
+											echo "bg-warning";
+										}elseif (strtoupper($FabType) == "THREAD"){
+											echo "bg-info";
+										}elseif (strtoupper($FabType) == "BUTTON"){
+											echo "bg-danger";
+										}else{
+											echo "bg-success";
+										}
+											?>">
 											<div class="corner-ribon black-ribon">
 												<i class=""><img class=" mr-3" alt="" style="margin-left: 15px; width:100px; height:18px; " src="<?php echo base_url('images/client_logo.png'); ?>"></i>
 											</div>
@@ -59,6 +69,7 @@ if (!empty($fetch_fabric_data)) {
 													<img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""  src="<?php echo $Fabimg; ?>">
 												</a>
 												<div class="media-body">
+													<h4 class="text-white" style="margin-top: 20px;" ><strong><?php	echo $FabId;	?></strong></h4>
 													<h3 class="text-white display-7" style="margin-top: 20px;" ><strong><?php	echo $FabName;	?></strong></h3>
 
 												</div>
@@ -73,6 +84,10 @@ if (!empty($fetch_fabric_data)) {
 												<li class="active">
 													<h4><?php	echo $FabColour;	?></h4>
 													Colour
+												</li>
+												<li class="active">
+													<h4><?php	echo $FabUnit;	?></h4>
+													Unit
 												</li>
 
 											</ul>
