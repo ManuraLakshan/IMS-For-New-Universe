@@ -38,7 +38,7 @@ INNER JOIN material ON material.material_id = bom.material_id AND style.style_id
 		$styleId = $this->input->get("style");
 		$this->load->model("ViewBomModel");
 		$this->ViewBomModel->remove($materialId,$styleId);
-		redirect("ViewBomController/viewBom");
+		redirect("ViewBomController/viewBom?id=".$styleId);
 	}
 
 }

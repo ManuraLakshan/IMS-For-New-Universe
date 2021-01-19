@@ -8,8 +8,7 @@
 </head>
 <body>
 	<center><h2>Email Send successfully...</h2>
-	<a href="<?php echo base_url("index.php/Welcome/orderProcess");?>">
-	<button type="button" class="btn btn-primary btn-lg">Back to DashBoard</button></center></a>
+	<a href="<?php echo base_url("index.php/Welcome/Order_Goods");?>" class="btn btn-primary btn-lg"> Back To order Goods</a>
 
 </body>
 </html>

@@ -169,15 +169,16 @@ class Welcome extends CI_Controller {
 		$this->load->model("orderData");
 		$orderData = $this->orderData->insertorderData();
 
+
 		if($orderData){
 			$this->load->view('email');
-		}
-
-
+			}
 	}
 
 	public function email_success()
 	{
+		$this->load->model("SMSModel");
+		$this->SMSModel->sendSMS($this->session->userdata('user_name'),"new order request has sent to your mail, Please check! Thank you!");
 		$this->load->view('email_success');
 
 	}

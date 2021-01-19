@@ -7,9 +7,7 @@
  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-	<center><h2>Email Send successfully...</h2>
-	<a href="<?php echo base_url("index.php/Welcome/orderProcess");?>">
-	<button type="button" class="btn btn-primary btn-lg">Back to DashBoard</button></center></a>
-
+		<h2>Email Send successfully...</h2>
+		<a href="<?php echo base_url("index.php/Welcome/Order_Goods");?>" class="btn btn-primary btn-lg">Back To Order Goods</a>
 </body>
 </html>
