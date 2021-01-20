@@ -30,11 +30,7 @@
 				  </div>
 				  <div class="card-body">
 
-				  	<?php echo validation_errors();?>
-					<?php echo form_open('welcome/email');?>
-
-
-				  	<form id="get_order_data" method="post">
+				  	<form id="get_order_data" action="<?php echo base_url("index.php/Welcome/insertOrderDetails");?>" method="post">
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Order Date</label>
 				  			<div class="col-sm-6">
@@ -50,7 +46,7 @@
 				  		<div class="form-group row">
 				  			<label class="col-sm-3 col-form-label" align="right">Sender Name*</label>
 				  			<div class="col-sm-6">
-				  				<input type="text" id="cust_name" name="sender_name"class="form-control form-control-sm" placeholder="Enter Sender Name" required/>
+				  				<input type="text" id="cust_name" name="sender_name"class="form-control form-control-sm" placeholder="Enter Sender Name" value="<?php echo $this->session->userdata('user_name'); ?>" required/>
 				  			</div>
 				  		</div>
 
@@ -58,8 +54,6 @@
 				  		<div class="card" style="box-shadow:0 0 15px 0 lightgrey;">
 				  			<div class="card-body">
 				  				<h3>Make a order list</h3>
-
-				  				<//?php echo form_open('welcome/email'); ?>
 
   								<div class="mb-3">
     							<label for="exampleInputEmail1" class="form-label">Material Name*</label>
@@ -109,7 +103,7 @@
 
   								<div class="mb-3">
     							<label for="exampleInputEmail1" class="form-label">Required Quantity*</label>
-    							<input type="text" class="form-control" id="material_name" aria-describedby="emailHelp" name="required_qty">
+    							<input type="text" class="form-control" id="requited_qty" aria-describedby="emailHelp" name="required_qty">
   								</div>
 
   								<div class="mb-3">
@@ -125,9 +119,9 @@
                     <center>
                       <input type="submit" id="order_form" style="width:150px;" class="btn btn-info" value="Order Now" >
                       <a href="<?php echo base_url("index.php/Welcome/print_invoice");?>">
-                      <input type="button" id="print_invoice" style="width:150px;" class="btn btn-info" value="Print Invoice"></a>
-                      <a href="<?php echo base_url("index.php/Welcome/pre_orders");?>">
-                       <input type="submit" id="pre_orders" style="width:150px;" class="btn btn-info" value="Previous Orders"></a>
+                     	 <input type="button" id="print_invoice" style="width:150px;" class="btn btn-info" value="Print Invoice">
+					  </a>
+
                     </center>
 
 
@@ -141,6 +135,70 @@
 	</div>
 
 
-	<?php include 'Partials/footer.php' ?>
+
+	<script>
+		$(document).ready(function (){
+			function handleAutoComplete(){
+
+
+				$("#material_id").autocomplete({
+					source: function (data, cb){
+						$.ajax({
+							url: "<?php echo base_url("index.php/Welcome/getRequestData");?>",
+							method: 'GET',
+							dataType: 'json',
+							data: {
+								id: data.term,
+							},
+							success: function (res){
+
+								let result = [
+									{
+										label: "There is no record related to " + data.term,
+										value: '',
+									}
+								];
+								if(res.length){
+									result = $.map(res, function (obj){
+
+										return {
+											label: obj["material_id"],
+											value: obj["material_id"],
+											data: obj
+										}
+									});
+								}
+								console.log(result);
+								cb(result);
+
+							}
+
+						});
+
+					},
+					select: function (event,selectData){
+						if(selectData && selectData.item && selectData.item.data){
+							let data = selectData.item.data;
+							//
+							// $('#materialDesc').val(data.material_description);
+							// $('#materialColor').val(data.color);
+							// $('#materialType').val(data.material_name);
+							$('#requited_qty').val(data.quentity);
+						}
+					}
+				});
+			}
+
+			function registerEvents(){
+
+				$(document).on("focus",'#material_id',handleAutoComplete);
+			}
+
+			registerEvents();
+		});
+
+	</script>
+
+		<?php include 'Partials/footer.php' ?>
 </body>
 </html>

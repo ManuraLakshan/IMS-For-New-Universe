@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 hameesha add inventory
 hameesha add inventory
 hameesha add inventory
@@ -17,3 +18,9 @@ Hameesha Logged In
 02:34:13am Hameesha Logged In
 02:41:59am Hameesha Log outed
 03:00:19am Hameesha Logged In
+=======
+04:38:30am hameesha Log outed
+04:39:21am kamal Logged In
+04:39:24am kamal Log outed
+04:52:19am hameesha Logged In
+>>>>>>> Stashed changes

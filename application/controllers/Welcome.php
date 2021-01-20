@@ -216,21 +216,23 @@ class Welcome extends CI_Controller {
 
 	// WATASHA'S welcome controller--------------------------------------------------------------------------------------------------------------------------
 
-	public function form_validation(){
+//	public function form_validation(){
+//		$this->load->library('form_validation');
+//		$this->form_validation->set_rules('material_name', 'material name', 'required');
+//
+//		if
+//		($this->form_validation->run())
+//		{
+//			$this->load->model('orderData');
+//
+//		}
+//	}
 
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('material_name', 'material name', 'required');
-
-		if ($this->form_validation->run())
-		{
-			$this->load->model('orderData');
-
-		}
-	}
-
-	public function email()
+	public function insertOrderDetails()
 	{
 
+
+		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('material_name', 'material name', 'required');
 		$this->form_validation->set_rules('gatepass', 'gatepass', 'required');
@@ -243,28 +245,84 @@ class Welcome extends CI_Controller {
 		$this->form_validation->set_rules('required_qty', 'required qty', 'required');
 		$this->form_validation->set_rules('description', 'desciption', 'required');
 
-		$this->load->model("orderData");
-		$orderData = $this->orderData->insertorderData();
 
+		if($this->form_validation->run())
+		{
+			$data = array(
 
-		if($orderData){
-			$this->load->view('email');
+				'material_name' => $this->input->post('material_name',TRUE),
+				'gate_pass_no' => $this->input->post('gatepass',TRUE),
+				'style' => $this->input->post('style',TRUE),
+				'material_id' => $this->input->post('material_id',TRUE),
+				'sample_name' => $this->input->post('sample_name',TRUE),
+				'sample_details' => $this->input->post('sample_details',TRUE),
+				'color' => $this->input->post('color',TRUE),
+				'roll_no' => $this->input->post('rollNo',TRUE),
+				'required_qty' => $this->input->post('required_qty',TRUE),
+				'description' => $this->input->post('description',TRUE)
+
+			);
+			$this->load->model("orderData");
+			if($this->orderData->insertorderData($data)){
+				$this->email_success();
+				redirect("Welcome/viewEmail");
 			}
+
+		}
+
+	}
+
+	public function viewEmail(){
+		$this->load->view("email");
+	}
+
+	public function sendEmail(){
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('fromEmail', 'from Email', 'required');
+		$this->form_validation->set_rules('toEmail', 'to Email', 'required');
+		$this->form_validation->set_rules('subject', 'subject', 'required');
+		$this->form_validation->set_rules('message', 'message', 'required');
+
+		if($this->form_validation->run())
+		{
+			$from = $this->input->post('fromEmail',TRUE);
+			$to = $this->input->post('toEmail',TRUE);
+			$subject = $this->input->post('subject',TRUE);
+			$message = $this->input->post('message',TRUE);
+
+
+			$headers = "From: \"$from\"" . "\r\n";
+
+			if(mail($to,$subject,$message,$headers)){
+				redirect("Welcome/email_success");
+			}
+
+
+		}
 	}
 
 	public function email_success()
 	{
 		$this->load->model("SMSModel");
 		$this->SMSModel->sendSMS($this->session->userdata('user_name'),"new order request has sent to your mail, Please check! Thank you!");
-		$this->load->view('email_success');
+//		$this->load->view('email_success');
 
 	}
 
+	public function getRequestData(){
+		$id = $this->input->get("id");
+
+		$this->load->model("orderData");
+		$details = $this->orderData->getRequests($id);
+		echo json_encode($details); exit;
+	}
 
 	public function Order_Goods()
 	{
 		$this->load->model("orderData");
-		$result["processData"] = $this->orderData->getorderData();
+//		$result["processData"] = $this->orderData->getorderData();
+		$result["styleId"] = $this->orderData->getorderStyle();
 		$this->load->view('orderProcess',$result);
 
 	}
@@ -291,7 +349,73 @@ class Welcome extends CI_Controller {
 
 	public function print_invoice()
 	{
-		$this->load->view('invoice_view');
+		$this->load->library('pdf');
+		$date = date('Y-m-d');
+		$data=$date."<br>";
+		$bom_info=$this->db->query("SELECT * FROM `new_order2`");
+		$rec = $bom_info->result();
+		$data .=
+
+			"<html> 
+
+		
+		<head>
+		<style>
+		table {
+		  font-family: arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+		
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+		
+		tr:nth-child(even) {
+		  background-color: #dddddd;
+		}
+		</style>
+		</head>
+		<body>
+		
+		<hr>
+		<h1 style = 'margin-bottom : -5'> <center>New Universe Garment</h1>
+		<h2> <center>Order Request Invoice</h2>
+		<hr>
+		
+		<table>
+		  <tr>
+			<th>Material ID</th>
+			<th>Material Name</th>
+			<th>Color</th>
+			<th>Required Qty</th>
+			<th>Description</th>
+		  </tr>";
+
+		foreach($rec as $record):
+			$data = $data . "<tr >
+			  <td>" . $record->material_id . "</td>
+			  <td>" . $record->material_name . "</td>
+			  <td>" . $record->color . "</td>
+			  <td>" . $record->required_qty . "</td>
+			  <td>" . $record->description . "</td>
+			</tr>";
+		endforeach;
+
+
+		$data = $data . "</table>
+		
+		</body>
+		</html>";
+
+		$data = $data . "</table>";
+		$this->pdf->loadHtml($data);
+		$this->pdf->render();
+		$this->pdf->stream(""."invoice.pdf",array("Atachment"=> 0));
+
+//		$this->load->view('invoice_view');
 	}
 
 

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,23 +18,18 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Send Email</h5>
-
-
-                    <?php echo validation_errors();?>
-                    <?php echo form_open('welcome/email_success'); ?>
-
-                    <form action="email_script.php" method="post" class="form-signin">
+                    <form action="<?php base_url("index.php/Welcome/sendEmail"); ?>" method="post" class="form-signin">
                         <div class="form-label-group">
                             <label for="inputEmail">From <span style="color: #FF0000">*</span></label>
-                            <input type="text" name="fromEmail" id="fromEmail" class="form-control"  value="w.harshani1997@gmail.com" readonly required autofocus>
+                            <input type="email" name="fromEmail" id="fromEmail" class="form-control"  value="w.harshani1997@gmail.com" readonly required autofocus>
                             <!--input type="text" name="fromEmail" id="fromEmail" class="form-control"-->
                         </div> <br/>
                         <div class="form-label-group">
                             <label for="inputEmail">To <span style="color: #FF0000">*</span></label>
-                            <input type="text" name="toEmail" id="toEmail" class="form-control" value="mdwatasha@gmail.com" readonly required autofocus>
+                            <input type="email" name="toEmail" id="toEmail" class="form-control" value="mdwatasha@gmail.com" readonly required autofocus>
                             <!--input type="text" name="fromEmail" id="fromEmail" class="form-control"-->
                         </div> <br/>
-                        <label for="inputPassword">Subject <span style="color: #FF0000">*</span></label>
+                        <label for="subject">Subject <span style="color: #FF0000">*</span></label>
                         <div class="form-label-group">
                             <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
                         </div><br/>
@@ -43,7 +39,6 @@
                         </div> <br/>
                         <button type="submit" name="sendMailBtn" class="btn btn-lg btn-primary btn-block text-uppercase" >Send Email</button>
                     </form>
-                    <?php echo form_close();?>
                 </div>
             </div>
         </div>

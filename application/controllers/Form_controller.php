@@ -57,6 +57,7 @@ class form_controller extends CI_Controller
 					'loggedin'=>TRUE
 
 				);
+<<<<<<< Updated upstream
 				$SuperUser = "SuperUser";
 				$pwd = sha1(12345);
 				$username = $this->input->post('user_name');
@@ -80,6 +81,27 @@ class form_controller extends CI_Controller
 						$this->GlobalMethods->logger($this->session->userdata('user_name'), "Logged In");
 						redirect('UserAccounts/UserStaff');
 					}
+=======
+				if($responce->role == 'ADMIN'){
+					$_SESSION["Roll"]="admin";
+					$this->session->set_userdata($user_data);
+					$_SESSION['Login_user']=$user_data;
+					$this->session->set_flashdata('Welcome','You are warmly welcome');
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"Logged In");
+					redirect('UserAccounts/UserAdmin');
+				}
+				elseif($responce->role == 'SUPER'){
+					redirect('LogBookController/loadLogBookView');
+				}else{
+					$_SESSION["Roll"]="staff";
+					$this->session->set_userdata($user_data);
+					$this->session->set_flashdata('Welcome','You are warmly welcome');
+					$this->load->model("GlobalMethods");
+					$this->GlobalMethods->logger($this->session->userdata('user_name'),"Logged In");
+					redirect('UserAccounts/UserStaff');
+				}
+>>>>>>> Stashed changes
 					//$this->session->set_userdata($user_data);
 					//$this->session->set_flashdata('Welcome', 'You are warmly welcome');
 					//redirect('UserAccounts/index1');
