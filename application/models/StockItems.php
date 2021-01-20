@@ -48,8 +48,6 @@ class StockItems extends CI_Model
 
 	function Login_user(){
 
-		$SuperUser = "SuperAdmin";
-		$SuperUserPwd=sha1(12345);
 
 		$username = $this->input->post('user_name');
 		$password = sha1($this->input->post('pwd'));
@@ -61,13 +59,23 @@ class StockItems extends CI_Model
 		if($respond->num_rows() == 1){
 			return $respond->row(0);
 
-		}else if($SuperUser == $username && $SuperUserPwd == $password){
-
-			echo base_url('LogBookController/loadLogBookView');
-
 		}else{
 			return false;
 		}
+	}
+	public function userDataCheck($userId){
+
+		$query=$this->db->query("SELECT * FROM user_requests WHERE id = \"$userId\"");
+//		$query = $this->db
+//			->select('*')
+//			->from('user')
+//			->where("$fieldName = '$userId'")
+//			->get();
+		return $query->result_array();
+	}
+	public function userRequestUpdate($userId){
+
+		$this->db->query("UPDATE user_requests SET status = 0 WHERE `id`=\"$userId\"");
 	}
 
 

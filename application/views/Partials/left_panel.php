@@ -48,6 +48,7 @@
 						<ul class="sub-menu children dropdown-menu">
 							<li><i class="menu-icon fa fa-user-plus"></i><a href="<?= site_url('users/add')?>">Add User</a></li>
 							<li><i class="menu-icon fa fa-users"></i><a href="<?php echo site_url('users'); ?>">Manage Users</a></li>
+							<li><i class="menu-icon fa fa-user"></i><a href="<?php echo base_url('index.php/LogBookController/loadLogBookView'); ?>">Manage User Logbook</a></li>
 
 						</ul>
 						<p style="color: white;" id="user_request"></p>
@@ -91,7 +92,6 @@
 							<li><i class="menu-icon fa fa-calendar-plus-o"></i><a href="<?php echo base_url('index.php/Welcome/check_requirement'); ?>">Check Requirement</a></li>
 							<li><i class="menu-icon fa fa-retweet"></i><a href="<?php echo base_url('index.php/Welcome/Add_Damaged_Goods'); ?>">Add Damaged Goods</a></li>
 							<li><i class="menu-icon fa fa-cubes"></i><a href="<?php echo base_url('index.php/Welcome/Order_Goods'); ?>">Order Goods</a></li>
-
 
 
 						</ul>

@@ -14,7 +14,7 @@ class ajax_testControl extends CI_Controller
 				$this->db->update('user_requests');
 
 			}
-			$query = $this->db->query("SELECT * FROM user_requests ORDER BY id DESC LIMIT 3");
+			$query = $this->db->query("SELECT * FROM user_requests WHERE status = 1 ");
 			$output = "";
 
 			if (!empty($query)) {
@@ -37,7 +37,7 @@ class ajax_testControl extends CI_Controller
                                     <p>Position :\t" . $_SESSION["modele_notitfication"][$i]->role . "</p>
                                     <div>
                                     <a href=\"".base_url('index.php/Welcome/userRequestRespondSuccess/'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" style='border-radius: 20px;' class=\" btn btn-dark \">submit</a>
-                                    <a href=\"".base_url('index.php/Welcome/userRequestRespondReject'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" style='border-radius: 20px;'  class=\" btn btn-warning \">Reject</a>
+                                    <a href=\"".base_url('index.php/Welcome/userRequestRespondReject/'.$userId= $_SESSION["modele_notitfication"][$i]->id)."\" style='border-radius: 20px;'  class=\" btn btn-warning \">Reject</a>
                                     </div>
                             </span>
 							</p>

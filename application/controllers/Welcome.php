@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
+
 class Welcome extends CI_Controller {
 
 	/**
@@ -140,52 +143,72 @@ class Welcome extends CI_Controller {
 	}
 	public function userRequestRespondSuccess($userId){
 
-		$to =  $this->input->post('from');  // User email pass here
-		$subject = 'Welcome To Elevenstech';
+		$this->load->model('StockItems');
+		$data=$this->StockItems->userDataCheck($userId);
 
-		$from = 'pass your email ID';              // Pass here your mail id
-
-		$emailContent = '<!DOCTYPE><html><head></head><body><table width="600px" style="border:1px solid #cccccc;margin: auto;border-spacing:0;"><tr><td style="background:#000000;padding-left:3%"><img src="http://elevenstechwebtutorials.com/assets/logo/logo.png" width="300px" vspace=10 /></td></tr>';
-		$emailContent .='<tr><td style="height:20px"></td></tr>';
-
-
-		$emailContent .= $this->input->post('message');  //   Post message available here
-
-
-		$emailContent .='<tr><td style="height:20px"></td></tr>';
-		$emailContent .= "<tr><td style='background:#000000;color: #999999;padding: 2%;text-align: center;font-size: 13px;'><p style='margin-top:1px;'><a href='http://elevenstechwebtutorials.com/' target='_blank' style='text-decoration:none;color: #60d2ff;'>www.elevenstechwebtutorials.com</a></p></td></tr></table></body></html>";
+	 	$name =$data[0]['user_name'];
+	 	$email=$data[0]['email'];
 
 
 
-		$config['protocol']    = 'smtp';
-		$config['smtp_host']    = 'ssl://smtp.gmail.com';
-		$config['smtp_port']    = '465';
-		$config['smtp_timeout'] = '60';
+		$this->load->config('email');
+		$this->load->library('email');
 
-		$config['smtp_user']    = 'Gmail ID Enter Here';    //Important
-		$config['smtp_pass']    = 'Gmail ID Password pass here';  //Important
+		$from = $this->config->item('smtp_user');
+		$to = $this->input->post('to');
+//		$subject = $this->input->post('subject');
+//		$message = $this->input->post('message');
+		$subject="Dear";
 
-		$config['charset']    = 'utf-8';
-		$config['newline']    = "\r\n";
-		$config['mailtype'] = 'html'; // or html
-		$config['validation'] = TRUE; // bool whether to validate email or not
-
-
-
-		$this->email->initialize($config);
-		$this->email->set_mailtype("html");
+		$this->email->set_newline("\r\n");
 		$this->email->from($from);
-		$this->email->to($to);
-		$this->email->subject($subject);
-		$this->email->message($emailContent);
-		$this->email->send();
+		$this->email->to($email);
+		$this->email->subject('User Account Request Accept');
+		$this->email->message ('Dear'.$name.',
+		We are warmly announce you, Your account request is granted and you can create your own account ');
+		if ($this->email->send()) {
 
-		$this->session->set_flashdata('msg',"Mail has been sent successfully");
-		$this->session->set_flashdata('msg_class','alert-success');
-		return redirect('email_send');
+			$this->load->model('StockItems');
+			$this->StockItems->userRequestUpdate($userId);
+			redirect('Welcome/view_inventory');
+		} else {
+			show_error($this->email->print_debugger());
+		}
 	}
+
+
 	public function userRequestRespondReject($userId){
-		echo "<script>alert($userId)</script>";
+		$this->load->model('StockItems');
+		$data=$this->StockItems->userDataCheck($userId);
+
+		$name =$data[0]['user_name'];
+		$email=$data[0]['email'];
+
+
+
+		$this->load->config('email');
+		$this->load->library('email');
+
+		$from = $this->config->item('smtp_user');
+		$to = $this->input->post('to');
+//		$subject = $this->input->post('subject');
+//		$message = $this->input->post('message');
+		$subject="Dear";
+
+		$this->email->set_newline("\r\n");
+		$this->email->from($from);
+		$this->email->to($email);
+		$this->email->subject('User Account Request Rejected');
+		$this->email->message ('Dear'.$name.',
+		We are Sadly announce you, Your account request is Not granted and you unable to create a own account ');
+		if ($this->email->send()) {
+			$this->load->model('StockItems');
+			$this->StockItems->userRequestUpdate($userId);
+			redirect('Welcome/view_inventory');
+
+		} else {
+			show_error($this->email->print_debugger());
+		}
 	}
 
 

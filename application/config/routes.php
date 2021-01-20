@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['userRequestRespond/:num'] = 'catalog/product_lookup';
+$route['email'] = 'Welcome';
 
 //image crud users
 $route['users']['GET'] = 'userController/view';
